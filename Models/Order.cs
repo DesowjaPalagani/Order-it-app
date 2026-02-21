@@ -8,10 +8,10 @@ namespace OrderItApp.Models
         public int Id { get; set; }
 
         [Required]
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
 
         [Required]
-        public string Item { get; set; }
+        public string? Item { get; set; }
 
         [Range(1, int.MaxValue)]
         public int Quantity { get; set; }
