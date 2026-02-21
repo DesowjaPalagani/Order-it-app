@@ -1,9 +1,9 @@
-# Production multi-stage Dockerfile for OrderIt (ASP.NET Core, .NET 8)
-# - Builds the app with the .NET 8 SDK
+# Production multi-stage Dockerfile for OrderIt (ASP.NET Core, .NET 10)
+# - Builds the app with the .NET 10 SDK
 # - Publishes a framework-dependent app into a lean runtime image
 # - Listens on the PORT environment variable (Render-compatible)
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copy project file(s) and restore dependencies
@@ -14,7 +14,7 @@ RUN dotnet restore "OrderIt.csproj"
 COPY . .
 RUN dotnet publish "OrderIt.csproj" -c Release -o /app/publish --no-restore
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 
 # Default port if PORT not supplied at runtime
