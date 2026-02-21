@@ -108,6 +108,7 @@
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/rjsmrazor.dswa.cache.json
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/scopedcss/bundle/OrderIt.styles.css
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/compressed/pyt2luhvme-{0}-fphru2i4mx-fphru2i4mx.gz
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/staticwebassets.build.json
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/staticwebassets.build.json.cache
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/staticwebassets.development.json
@@ -119,3 +120,10 @@
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/OrderIt.pdb
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/OrderIt.genruntimeconfig.cache
 /Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/ref/OrderIt.dll
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/bin/Debug/net10.0/DnsClient.dll
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/bin/Debug/net10.0/MongoDB.Bson.dll
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/bin/Debug/net10.0/MongoDB.Driver.dll
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/bin/Debug/net10.0/SharpCompress.dll
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/bin/Debug/net10.0/Snappier.dll
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/bin/Debug/net10.0/ZstdSharp.dll
+/Users/desowjapalagani/Documents/GitHub/Order-it-app/obj/Debug/net10.0/compressed/r3rhceer3w-{0}-wfmowbvc2u-wfmowbvc2u.gz

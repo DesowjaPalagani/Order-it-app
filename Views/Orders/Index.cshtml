@@ -5,6 +5,13 @@
 }
 
 <h1>Orders</h1>
+
+@* show a friendly prompt when the user has not placed any orders yet *@
+@if (!Model.Any())
+{
+    <p class="lead">Start your order here</p>
+}
+
 <p>
     <a class="btn btn-primary" asp-controller="Orders" asp-action="Create">Create New Order</a>
 </p>

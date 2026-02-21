@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace OrderItApp.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly OrderContext _context;

@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OrderItApp.Data;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace OrderItApp
 {
@@ -20,9 +22,31 @@ namespace OrderItApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // add MVC
             services.AddControllersWithViews();
+
+            // configure in‑memory EF context
             services.AddDbContext<OrderContext>(options =>
                 options.UseInMemoryDatabase("OrderDb"));
+
+            // register MongoDB
+            services.AddSingleton<IMongoClient>(new MongoClient(Configuration["MongoDb:ConnectionString"]));
+            services.AddScoped<IUserService, UserService>();
+
+            // password hasher provided by Identity library
+            services.AddScoped<Microsoft.AspNetCore.Identity.IPasswordHasher<OrderItApp.Models.User>,
+                                Microsoft.AspNetCore.Identity.PasswordHasher<OrderItApp.Models.User>>();
+
+            // cookie authentication with production‑grade settings
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.AccessDeniedPath = "/Account/Login";
+                    options.Cookie.HttpOnly = true;
+                    options.SlidingExpiration = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +67,8 @@ namespace OrderItApp
 
             app.UseRouting();
 
+            // authentication must run before authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

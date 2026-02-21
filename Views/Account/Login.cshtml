@@ -1,0 +1,90 @@
+@model OrderItApp.Models.AuthViewModel
+
+@{
+    var mode = ViewData["Mode"] as string ?? "Login";
+    ViewData["Title"] = mode == "Register" ? "Sign up" : "Log in";
+    Layout = "_AuthLayout";
+}
+
+<div class="auth-container">
+    <div class="auth-hero">
+        <h1>Order food you love, faster</h1>
+    </div>
+    <div class="auth-card">
+        <div class="card">
+            @* success banner (TempData) *@
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    <span>@TempData["SuccessMessage"]</span>
+                    <button type="button" class="close" onclick="this.parentElement.style.display='none'">&times;</button>
+                </div>
+            }
+            <div class="tabs">
+                <button type="button" class="tab @(mode == "Login" ? "active" : "")" data-target="login-form">Login</button>
+                <button type="button" class="tab @(mode == "Register" ? "active" : "")" data-target="signup-form">Sign Up</button>
+            </div>
+
+            <!-- login form -->
+            <form id="login-form" class="auth-form @(mode == "Register" ? "hidden" : "")" asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="field-validation-error"></div>
+                <div class="form-group">
+                    <label asp-for="Login.UserName">Username or Email</label>
+                    <input asp-for="Login.UserName" />
+                    <span asp-validation-for="Login.UserName" class="field-validation-error"></span>
+                </div>
+                <div class="form-group password-wrapper">
+                    <label asp-for="Login.Password"></label>
+                    <input asp-for="Login.Password" type="password" />
+                    <button type="button" class="toggle-password">Show</button>
+                    <span asp-validation-for="Login.Password" class="field-validation-error"></span>
+                </div>
+                <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                <div class="options">
+                    <label><input type="checkbox" name="remember" /> Remember me</label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="button-primary">Log in</button>
+            </form>
+
+            <!-- signup form -->
+            <form id="signup-form" class="auth-form @(mode == "Login" ? "hidden" : "")" asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="field-validation-error"></div>
+                <div class="form-group">
+                    <label asp-for="Signup.UserName"></label>
+                    <input asp-for="Signup.UserName" />
+                    <span asp-validation-for="Signup.UserName" class="field-validation-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Signup.Email"></label>
+                    <input asp-for="Signup.Email" />
+                    <span asp-validation-for="Signup.Email" class="field-validation-error"></span>
+                </div>
+                <div class="form-group password-wrapper">
+                    <label asp-for="Signup.Password"></label>
+                    <input asp-for="Signup.Password" type="password" />
+                    <button type="button" class="toggle-password">Show</button>
+                    <span asp-validation-for="Signup.Password" class="field-validation-error"></span>
+                </div>
+                <div class="form-group password-wrapper">
+                    <label asp-for="Signup.ConfirmPassword"></label>
+                    <input asp-for="Signup.ConfirmPassword" type="password" />
+                    <button type="button" class="toggle-password">Show</button>
+                    <span asp-validation-for="Signup.ConfirmPassword" class="field-validation-error"></span>
+                </div>
+                <button type="submit" class="button-primary">Create account</button>
+            </form>
+
+
+            <div class="divider"><span>or</span></div>
+            <div class="social-buttons">
+                <button class="social google" type="button">Continue with Google</button>
+                <button class="social apple" type="button">Continue with Apple</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
